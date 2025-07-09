@@ -21,6 +21,11 @@
         for (const child of el.children) {
           child.style.maxWidth = "100%";
           child.style.width = "100%";
+          for (const grandChild of child.children) {
+              grandChild.style.maxWidth = "100%";
+              grandChild.style.width = "100%";
+
+          }
         }
       }
     });
@@ -61,8 +66,9 @@
   controlPanel.style.height = '100px';
   controlPanel.style.zIndex = '9999'; // Ensure it appears on top
   controlPanel.innerHTML = `
-    <button id="appendTextBtn" style="height:38px; width:98px;margin-bottom: 20px; background-color: black;border-radius: 8px;">dont talk</button>
-    <button id="appendTextBtn1" style="height:38px; width:98px;margin-bottom: 20px; background-color: black;border-radius: 8px;">show only code</button>
+    <button id="appendTextBtn" style="height:38px; width:98px;margin-bottom: 20px; background-color: black;border-radius: 8px;font-size: small;border: 0;font-family: arial;">dont talk</button>
+    <button id="appendTextBtn1" style="height:38px; width:98px;margin-bottom: 20px; background-color: black;border-radius: 8px;font-size: small;border: 0;font-family: arial;">give me short answer please</button>
+    <button id="appendTextBtn2" style="height:38px; width:98px;margin-bottom: 20px; background-color: black;border-radius: 8px;font-size: small;border: 0;font-family: arial;">show only code</button>
   `;
   document.body.appendChild(controlPanel);
 
@@ -74,6 +80,11 @@
   });
 
   document.getElementById('appendTextBtn1').addEventListener('click', () => {
+    if (document.querySelector('.ql-editor.textarea.new-input-ui')) {
+      document.querySelector('.ql-editor.textarea.new-input-ui').innerHTML += 'give me short answer please';
+    }
+  });
+  document.getElementById('appendTextBtn2').addEventListener('click', () => {
     if (document.querySelector('.ql-editor.textarea.new-input-ui')) {
       document.querySelector('.ql-editor.textarea.new-input-ui').innerHTML += 'show me only code please';
     }
