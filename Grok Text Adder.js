@@ -61,18 +61,25 @@
   } else {
     observeDOM();
   }
+
   // Create and append the control panel div
   const controlPanel = document.createElement("div");
   controlPanel.style.position = "fixed";
-  controlPanel.style.right = "0px";
-  controlPanel.style.top = "50%";
-  controlPanel.style.width = "100px";
-  controlPanel.style.height = "100px";
+  controlPanel.style.left = "50%";
+  controlPanel.style.top = "0px";
+  controlPanel.style.width = "fit-content";
+  controlPanel.style.height = "fit-content";
   controlPanel.style.zIndex = "9999"; // Ensure it appears on top
+  controlPanel.style.transform = "translateX(-50%)"; // Center horizontally
+  controlPanel.style.display = "flex";
+  controlPanel.style.flexDirection = "row";
+  controlPanel.style.padding = "4px";
+  controlPanel.style.gap = "12px";
   controlPanel.innerHTML = `
-    <button id="appendTextBtn" style="height:38px; width:98px;margin-bottom: 20px; background-color: black;border-radius: 8px;font-size: small;border: 0;font-family: arial;">dont talk</button>
-    <button id="appendTextBtn1" style="height:38px; width:98px;margin-bottom: 20px; background-color: black;border-radius: 8px;font-size: small;border: 0;font-family: arial;">give me short answer please</button>
-    <button id="appendTextBtn2" style="height:38px; width:98px;margin-bottom: 20px; background-color: black;border-radius: 8px;font-size: small;border: 0;font-family: arial;">show only code</button>
+  <button id="appendTextBtn"  style="cursor:pointer; height:48px; width:120px;margin-bottom: 20px; background-color: #2b2b2b; border-radius: 8px;font-size: small;border: 0;font-family: arial; box-shadow: 0 4px 10px 0 rgb(0, 0, 0);">dont talk</button>
+  <button id="appendTextBtn1" style="cursor:pointer; height:48px; width:120px;margin-bottom: 20px; background-color: #2b2b2b; border-radius: 8px;font-size: small;border: 0;font-family: arial; box-shadow: 0 4px 10px 0 rgb(0, 0, 0);">give me short answer please</button>
+  <button id="appendTextBtn2" style="cursor:pointer; height:48px; width:120px;margin-bottom: 20px; background-color: #2b2b2b; border-radius: 8px;font-size: small;border: 0;font-family: arial; box-shadow: 0 4px 10px 0 rgb(0, 0, 0);">show only code</button>
+  <button id="appendTextBtn3" style="cursor:pointer; height:48px; width:120px;margin-bottom: 20px; background-color: #2b2b2b; border-radius: 8px;font-size: small;border: 0;font-family: arial; box-shadow: 0 4px 10px 0 rgb(0, 0, 0);">do no use canvas to show code</button>
   `;
   document.body.appendChild(controlPanel);
 
@@ -94,7 +101,15 @@
   document.getElementById("appendTextBtn2").addEventListener("click", () => {
     const textarea = document.querySelector('textarea[aria-label="Ask Grok anything"]');
     if (textarea) {
-      textarea.value += " show me only code please";
+      textarea.value += " show me only code ";
     }
   });
+
+  document.getElementById("appendTextBtn3").addEventListener("click", () => {
+    const textarea = document.querySelector('textarea[aria-label="Ask Grok anything"]');
+    if (textarea) {
+      textarea.value += " do not use canvas to show code";
+    }
+  });
+
 })();
